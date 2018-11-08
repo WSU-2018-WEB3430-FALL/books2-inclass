@@ -1,0 +1,1 @@
+# An example in-class app demoing Mongoose.
