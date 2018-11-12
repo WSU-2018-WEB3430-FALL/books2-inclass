@@ -1,0 +1,21 @@
+<div *ngIf="book">
+  <form>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" name="id" [(ngModel)]="book._id" readonly>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="title" [(ngModel)]="book.title">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="author" [(ngModel)]="book.author">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="isbn" [(ngModel)]="book.isbn">
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-danger" (click)="cancelSelection(book)">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

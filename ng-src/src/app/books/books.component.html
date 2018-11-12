@@ -1,0 +1,32 @@
+<h1>Books</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">TITLE</th>
+      <th scope="col">AUTHOR</th>
+      <th scope="col">ISBN</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <ng-template [ngIf]="book != selectedBook">
+        <td scope="row">{{ book._id }} </td>
+        <td>{{ book.title }} </td>
+        <td>{{ book.author }} </td>
+        <td>{{ book.isbn }} </td>
+        <td>
+          <button class="btn btn-success" (click)="onEdit(book)">Edit</button>&nbsp;
+          <button class="btn btn-primary" routerLink="/books/{{book.id}}">Open</button>
+        </td>
+      </ng-template>
+      <ng-template [ngIf]="book == selectedBook">
+        <td colspan="5">
+          <app-book-form [book]="selectedBook" (cancel)="unselect(book)"></app-book-form>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
+
