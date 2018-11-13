@@ -1,4 +1,7 @@
-<h1>Books</h1>
+<h1>
+  Books  
+  <button class="btn btn-primary float-right" (click)="onCreate()">Add new book</button>
+</h1>
 <table class="table">
   <thead>
     <tr>
@@ -18,6 +21,7 @@
         <td>{{ book.isbn }} </td>
         <td>
           <button class="btn btn-success" (click)="onEdit(book)">Edit</button>&nbsp;
+          <button class="btn btn-danger" (click)="onDelete(book)">Delete</button>&nbsp;
           <button class="btn btn-primary" routerLink="/books/{{book.id}}">Open</button>
         </td>
       </ng-template>

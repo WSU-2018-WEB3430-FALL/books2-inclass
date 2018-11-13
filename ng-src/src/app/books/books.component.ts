@@ -14,6 +14,10 @@ export class BooksComponent implements OnInit {
   constructor(private booksService: BooksService) { }
 
   ngOnInit() {
+    this.fetchBooks();
+  }
+
+  fetchBooks(): void {
     this.booksService.getBooks().subscribe(books => this.books = books);
   }
 
@@ -21,8 +25,16 @@ export class BooksComponent implements OnInit {
     this.selectedBook = book;
   }
 
+  onCreate(): void {
+    this.booksService.createBook({_id: null, title: "", author: "", isbn: ""}).subscribe(res => this.fetchBooks());
+  }
+
+  onDelete(book: Book): void{
+    this.booksService.deleteBook(book).subscribe(_ => this.fetchBooks());
+  }
   unselect(book: Book): void {
     this.selectedBook = null;
+    this.fetchBooks();
   }
 
 }

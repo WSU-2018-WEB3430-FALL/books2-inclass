@@ -22,4 +22,16 @@ export class BooksService {
   getBook(id: number): Observable<Book> {
     return of(SAMPLE_BOOKS.find(book => id === book._id));
   }
+
+  createBook(book: Book): Observable<any>{
+    return this.http.post("/api/books/create", book, httpOptions);
+  }
+
+  updateBook(book: Book): Observable<any>{
+    return this.http.put(`/api/books/${book._id}/update`, book, httpOptions);
+  }
+
+  deleteBook(book: Book): Observable<any>{
+    return this.http.delete(`/api/books/${book._id}/delete`,  httpOptions);
+  }
 }
