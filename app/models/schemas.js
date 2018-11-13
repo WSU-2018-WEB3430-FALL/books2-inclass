@@ -26,6 +26,11 @@ let userSchema = new Schema({
     required: true
   }
 });
+
+userSchema.pre('save', function(next){
+  let user = this;
+});
+
 let bookSchema = new Schema ({
     title: String,
     author: String,
