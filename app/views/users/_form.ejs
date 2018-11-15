@@ -1,0 +1,40 @@
+<div class="form-group">
+  <label for="username">Username</label>
+  <input type="text" class="form-control <%= errors.username ? 'is-invalid' : '' %>" name="username" id="username" value="<%= user.username %>">
+  <div class="invalid-feedback">
+    <%= (errors.username || {}).message %>
+  </div>
+</div>
+<div class="form-group">
+  <label for="password">Password</label>
+  <input type="password" class="form-control <%= errors.password ? 'is-invalid' : '' %>" name="password" id="password"
+    value="">
+  <div class="invalid-feedback">
+    <%= (errors.password || {}).message %>
+  </div>
+</div>
+<div class="form-group">
+  <label for="firstName">First name</label>
+  <input type="text" class="form-control <%= errors.firstName ? 'is-invalid' : '' %>" name="firstName" id="firstName"
+    value="<%= user.firstName %>">
+  <div class="invalid-feedback">
+    <%= (errors.firstName || {}).message %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="lastName">Last name</label>
+  <input type="text" class="form-control <%= errors.lastName ? 'is-invalid' : '' %>" name="lastName" id="lastName"
+    value="<%= user.lastName %>">
+  <div class="invalid-feedback">
+    <%= (errors.lastName || {}).message %>
+  </div>
+</div>
+<div class="form-group">
+  <label for="email">Email</label>
+  <input type="text" class="form-control <%= errors.email ? 'is-invalid' : '' %>" name="email" id="email" value="<%= user.email %>">
+  <div class="invalid-feedback">
+    <%= (errors.email || {}).message %>
+  </div>
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 let userSchema = new Schema({
   username: {
@@ -27,8 +28,18 @@ let userSchema = new Schema({
   }
 });
 
+userSchema.statics.authenticate = function(username, password, callback){
+
+}
+
 userSchema.pre('save', function(next){
   let user = this;
+  bcrypt.hash(user.password, 10, function(err, hash){
+    if(err) return next(err);
+
+    user.password = hash;
+    next();
+  });
 });
 
 let bookSchema = new Schema ({
@@ -37,4 +48,5 @@ let bookSchema = new Schema ({
     isbn: String
 });
 
+module.exports.User = mongoose.model("User", userSchema);
 module.exports.Book = mongoose.model("Book", bookSchema);

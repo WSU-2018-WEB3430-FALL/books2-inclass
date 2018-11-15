@@ -1,6 +1,23 @@
-<app-root></app-root>
-<script type="text/javascript" src="/ng/runtime.js"></script>
-<script type="text/javascript" src="/ng/polyfills.js"></script>
-<script type="text/javascript" src="/ng/styles.js"></script>
-<script type="text/javascript" src="/ng/vendor.js"></script>
-<script type="text/javascript" src="/ng/main.js"></script>
+<h1>Please log in</h1>
+
+<form action="/login" method="post">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control <%= errors.username ? 'is-invalid' : '' %>" name="username" id="username"
+      value="<%= user.username %>">
+    <div class="invalid-feedback">
+      <%= (errors.username || {}).message %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control <%= errors.password ? 'is-invalid' : '' %>" name="password" id="password"
+      value="">
+    <div class="invalid-feedback">
+      <%= (errors.password || {}).message %>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block">Submit</button>
+  <p>If you don't have an account with us please sign up for one</p>
+  <a class="btn btn-light  btn-block" href="/users/new">Add a new user</a>
+</form>

@@ -3,7 +3,18 @@ let router = express.Router();
 let { Book } = require("../models/schemas");
 /* GET / */
 router.get('/', function(req, res, next) {
-  res.render('layout', { title: 'My Library', content: "index" });
+  res.render('layout', { title: 'My Library', content: "index", errors: {}, user: {}});
+});
+
+router.post('/login', function(req, res, next) {
+  User.authenticate(req.body.username, req.body.password, function(err, user){
+    if(err || !user){
+      res.render('layout', { title: 'My Library', content: "index", errors: {}, user: {}});
+    }else{
+      req.session.userId = user._id;
+      res.redirect(301, '/books');
+    }
+  });
 });
 
 router.get('/books', function(req, res, next) {
