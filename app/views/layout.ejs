@@ -21,7 +21,11 @@
               <a class="nav-link" href="/users">Users</a>
             </li>
           </ul>
-          <a class="btn btn-light my-2 my-sm-0" href="/users/new">Add a new user</a>
+          <% if(loggedIn) { %>
+            <form action="/logout" method="post">
+              <button>Logout</button>
+            </form>
+          <% } %>
         </div>
       </nav>
     </header>

@@ -1,4 +1,6 @@
-<h2>Current Users</h2>
+<h2>Current Users
+  <a class="btn btn-primary float-right" href="/users/new">Add a new user</a>
+</h2>
 <% for(let m in messages) { %>
     <div class="alert alert-<%= m %>" role="alert">
       <%= messages[m] %>

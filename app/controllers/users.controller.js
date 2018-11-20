@@ -1,9 +1,11 @@
 let express = require('express');
 let router = express.Router();
+const requireLogin = require("../helpers/require_login");
 let {User} = require("../models/schemas");
 
 /* GET /users/ -> index.ejs */
-router.get('/', function(req, res, next) {
+router.get('/', requireLogin, function(req, res, next) {
+  console.log(" from users ");
   User.find().exec((err, users) => {
     console.log(users);
       res.render('layout', { title: 'My Library', content: "users/index", users });
@@ -35,7 +37,7 @@ router.post('/create', function(req, res, next) {
 });
 
 /* GET  /users/:id/edit -> edit.ejs */
-router.get('/:id/edit', function(req, res, next) {
+router.get('/:id/edit', requireLogin, function(req, res, next) {
   User.findById(req.params.id, (err, user) => {
     if(err){
       res.render('layout', { title: 'My Library', content: "users/edit", errors: err.errors, user });
@@ -46,7 +48,7 @@ router.get('/:id/edit', function(req, res, next) {
 });
 
 /* GET  /users/:id/update */
-router.post('/:id/update', function(req, res, next) {
+router.post('/:id/update', requireLogin, function(req, res, next) {
   User.findById(req.params.id, (err, user) => {
     Object.assign(user, req.body);
     user.save((err) =>{
@@ -60,7 +62,7 @@ router.post('/:id/update', function(req, res, next) {
 });
 
 /* post  /users/:id/delete */
-router.post('/:id/delete', function(req, res, next) {
+router.post('/:id/delete', requireLogin, function(req, res, next) {
   User.findByIdAndRemove(req.params.id, (err) => {
     res.redirect(301, "/users/");
   });

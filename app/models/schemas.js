@@ -29,7 +29,15 @@ let userSchema = new Schema({
 });
 
 userSchema.statics.authenticate = function(username, password, callback){
+  this.findOne({username: username }).exec(function(err, user){
+    if(err) return callback(err);
+    if(!user) return callback("Invalid username");
 
+    bcrypt.compare(password, user.password, function(err, result){
+      if(result) return callback(null, user);
+      else return callback("Invalid password")
+    })
+  });
 }
 
 userSchema.pre('save', function(next){
